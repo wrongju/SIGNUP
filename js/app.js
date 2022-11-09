@@ -14,7 +14,7 @@ let errorLastName = document.querySelectorAll('.errorLastName');
 let errorEmail = document.querySelectorAll('.errorEmail');
 let errorPassword = document.querySelectorAll('.errorPassword');
 // ERROR END
-
+const emailRegExp = (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/);
 claim.addEventListener('click', () => {
 
 	if (getFirstName.value == '') {
@@ -34,8 +34,9 @@ claim.addEventListener('click', () => {
 		getLastName.parentElement.style.outline = '1px solid black'
 		errorLastName.forEach((el) => el.style.display = 'none')
 	}
-
-	if (getEmail.value == '') {
+	
+	if (getEmail.value == '' || !emailRegExp.test(getEmail.value)) {
+		
 		getEmail.parentElement.style.outline = '1px solid red'
 		errorEmail.forEach((el) => el.style.display = 'flex')
 		getEmail.style.paddingRight = '12px'
